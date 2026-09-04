@@ -236,7 +236,8 @@ function NavBar({ onTriggerToast }: { onTriggerToast: (msg: string) => void }) {
     { label: "01 // PROJECTS", href: "#projects" },
     { label: "02 // SKILLS", href: "#skills" },
     { label: "03 // EDUCATION", href: "#education" },
-    { label: "04 // CONTACT", href: "#contact" }
+    { label: "04 // CONTACT", href: "#contact" },
+    { label: "05 // AI STACK", href: "#ai-stack" }
   ];
 
   return (
@@ -892,6 +893,123 @@ function ContactSection({ onTriggerToast }: { onTriggerToast: (msg: string) => v
   );
 }
 
+// AI Stack & Prompt Specs Component
+function AISpecsSection({ onTriggerToast }: { onTriggerToast: (msg: string) => void }) {
+  const [activePromptIndex, setActivePromptIndex] = useState(0);
+
+  const aiTools = [
+    {
+      name: "FIGMA",
+      role: "Design System & Interface Architecture",
+      desc: "Used Figma Make to compose responsive layout components, design tokens, typography, and dark-mode color scales."
+    },
+    {
+      name: "GEMINI AI",
+      role: "Core Intelligence & System Logic",
+      desc: "Powered by Google Gemini 3.6 Flash model for intelligent prompt reasoning, data structure design, and TypeScript logic."
+    },
+    {
+      name: "ANTIGRAVITY",
+      role: "Agentic Engineering & Automation",
+      desc: "Google DeepMind's Antigravity agent executed multi-file edits, automated test builds, and GitHub Pages CI/CD workflow deployment."
+    }
+  ];
+
+  const samplePrompts = [
+    {
+      title: "PROMPT 01 — FULL PORTFOLIO ARCHITECTURE",
+      text: "Develop a high-tech developer portfolio web app for Afraz Ahmed, CS undergraduate at Islamic University of Technology (IUT), Dhaka (ID: 230041225). Use React 19, Tailwind CSS v4, dark cyber-minimalism aesthetic (#080808 background, #00ff88 neon green accents), featuring Green Guardian & IUT DBMS project specs, skills matrix, academic journey, and contact section."
+    },
+    {
+      title: "PROMPT 02 — COMPONENT & TYPOGRAPHY STYLING",
+      text: "Style a brutalist UI layout using JetBrains Mono and Outfit typography with crisp border dividers, toast notification system for quick email copying, modal drawers for project technical specifications, and interactive skill search filters."
+    },
+    {
+      title: "PROMPT 03 — CI/CD & GITHUB PAGES DEPLOYMENT",
+      text: "Configure relative asset base paths (/portfolio/) in vite.config.ts and set up automated gh-pages deployment scripts and GitHub Actions pipeline for live publishing on GitHub Pages."
+    }
+  ];
+
+  return (
+    <section id="ai-stack" className="py-24 px-6 border-t border-[#111111] bg-[#070707]">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-center gap-4 mb-16">
+          <span className="font-mono text-xs text-[#00ff88] tracking-widest">05</span>
+          <span className="flex-1 h-px bg-[#1a1a1a]" />
+          <h2 className="font-mono text-xs tracking-widest text-[#666666]">AI CREATION STACK & SPECIFICATIONS</h2>
+        </div>
+
+        {/* AI Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {aiTools.map((tool) => (
+            <div
+              key={tool.name}
+              className="bg-[#0a0a0a] border border-[#1f1f1f] hover:border-[#00ff88]/50 p-6 transition-all duration-200"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-[#00ff88]" />
+                <span className="font-mono text-xs text-[#00ff88] font-bold tracking-widest">{tool.name}</span>
+              </div>
+              <h3 className="font-mono text-sm font-semibold text-white mb-2">{tool.role}</h3>
+              <p className="font-sans text-xs text-[#888888] leading-relaxed">{tool.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Prompt Showcase Box */}
+        <div className="border border-[#222222] bg-[#0a0a0a] p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <span className="font-mono text-[10px] text-[#00ff88] tracking-widest block mb-1">
+                // SYSTEM PROMPTS USED FOR GENERATION
+              </span>
+              <h3 className="font-mono text-lg font-bold text-white">AI GENERATION PROMPTS</h3>
+            </div>
+
+            <div className="flex gap-2">
+              {samplePrompts.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActivePromptIndex(i)}
+                  className={`font-mono text-xs px-3 py-1 border transition-colors ${
+                    activePromptIndex === i
+                      ? "bg-[#00ff88] text-[#080808] border-[#00ff88] font-bold"
+                      : "bg-[#111111] text-[#888888] border-[#222222] hover:text-white"
+                  }`}
+                >
+                  P0{i + 1}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-[#0d0d0d] border border-[#1e1e1e] p-5 font-mono relative">
+            <div className="text-xs text-[#00ff88] mb-2 font-bold">
+              {samplePrompts[activePromptIndex].title}
+            </div>
+            <p className="text-xs text-[#cccccc] leading-relaxed select-all">
+              "{samplePrompts[activePromptIndex].text}"
+            </p>
+
+            <div className="mt-4 pt-3 border-t border-[#181818] flex justify-end">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(samplePrompts[activePromptIndex].text);
+                  onTriggerToast("Prompt copied to clipboard!");
+                }}
+                className="flex items-center gap-2 text-xs font-mono text-[#aaaaaa] hover:text-[#00ff88] border border-[#222222] hover:border-[#00ff88] px-3 py-1.5 transition-colors bg-[#080808]"
+              >
+                <CopyIcon />
+                <span>COPY PROMPT</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Footer Component
 function Footer() {
   return (
@@ -915,6 +1033,7 @@ function Footer() {
               <a href="#skills" className="hover:text-[#00ff88] transition-colors">02 // SKILLS</a>
               <a href="#education" className="hover:text-[#00ff88] transition-colors">03 // EDUCATION</a>
               <a href="#contact" className="hover:text-[#00ff88] transition-colors">04 // CONTACT</a>
+              <a href="#ai-stack" className="hover:text-[#00ff88] transition-colors">05 // AI STACK</a>
             </div>
           </div>
 
@@ -944,7 +1063,7 @@ function Footer() {
             © 2026 AFRAZ AHMED — ALL RIGHTS RESERVED
           </span>
           <span className="font-mono text-[10px] tracking-widest text-[#333333]">
-            BUILT WITH REACT 19 + VITE + TAILWIND CSS V4
+            BUILT WITH FIGMA, GEMINI & ANTIGRAVITY — REACT 19 + TAILWIND CSS V4
           </span>
         </div>
       </div>
@@ -964,6 +1083,7 @@ export default function App() {
       <SkillsSection />
       <EducationSection />
       <ContactSection onTriggerToast={(msg) => setToastMessage(msg)} />
+      <AISpecsSection onTriggerToast={(msg) => setToastMessage(msg)} />
       <Footer />
 
       {toastMessage && (
