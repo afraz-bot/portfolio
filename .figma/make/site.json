@@ -1,0 +1,10 @@
+{
+  "description": "This personal portfolio website template offers a sleek, dark mode design for Computer Science students, featuring structured sections for showcasing skills, projects, and contact information.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

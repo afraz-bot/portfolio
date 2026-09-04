@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+@theme inline {
+  --color-background: #080808;
+  --color-foreground: #e2e2e2;
+  --color-card: #111111;
+  --color-card-foreground: #e2e2e2;
+  --color-primary: #00ff88;
+  --color-primary-foreground: #080808;
+  --color-secondary: #161616;
+  --color-secondary-foreground: #aaaaaa;
+  --color-muted: #1a1a1a;
+  --color-muted-foreground: #666666;
+  --color-accent: #00ff88;
+  --color-accent-foreground: #080808;
+  --color-border: #222222;
+  --color-ring: #00ff88;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #222222 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #222222;
+}
+
+body {
+  background-color: #080808;
+  color: #e2e2e2;
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
